@@ -2,12 +2,28 @@ import java.util.ArrayList;
 
 public class Dienblad {
     private ArrayList<Artikel> artikelen;
+    Persoon klant;
 
     /**
      * Constructor
      */
-    public Dienblad() {
+    public Dienblad(Persoon klant) {
         artikelen = new ArrayList<Artikel>();
+        this.klant = klant;
+    }
+
+    /**
+     * @return the klant
+     */
+    public Persoon getKlant() {
+        return klant;
+    }
+
+    /**
+     * @param klant the klant to set
+     */
+    public void setKlant(Persoon klant) {
+        this.klant = klant;
     }
 
     /**
