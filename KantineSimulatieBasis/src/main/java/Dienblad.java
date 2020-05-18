@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Stack;
 
 public class Dienblad {
     private ArrayList<Artikel> artikelen;
@@ -9,7 +7,7 @@ public class Dienblad {
      * Constructor
      */
     public Dienblad() {
-        // method body omitted
+        artikelen = new ArrayList<Artikel>();
     }
 
     /**
@@ -18,7 +16,7 @@ public class Dienblad {
      * @param artikel
      */
     public void voegToe(Artikel artikel) {
-        // method body omitted
+        artikelen.add(artikel);
     }
 
     /**
@@ -27,7 +25,7 @@ public class Dienblad {
      * @return Het aantal artikelen
      */
     public int getAantalArtikelen() {
-        // method body omitted
+        return artikelen.size();
     }
 
     /**
@@ -36,7 +34,10 @@ public class Dienblad {
      * @return De totaalprijs
      */
     public double getTotaalPrijs() {
-        // method body omitted
+        double value = 0;
+        for (Artikel art : artikelen) {
+            value += art.getPrijs();
+        }
+        return value;
     }
 }
-
