@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 
 public class Dienblad {
+
+    // fields
     private ArrayList<Artikel> artikelen;
-    Persoon klant;
+    private Persoon klant;
 
     /**
      * Constructor
