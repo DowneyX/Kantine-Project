@@ -11,32 +11,69 @@ public class Datum {
 			this.dag = dag;
 			this.maand = maand;
 			this.jaar = jaar;
+		} else {
+			this.dag = 0;
+			this.maand = 0;
+			this.jaar = 0;
 		}
 	}
 
 	// methods
+	/**
+	 * @return the dag
+	 */
 	public int getDag() {
 		return dag;
 	}
 
+	/**
+	 * @return the maand
+	 */
 	public int getMaand() {
 		return maand;
 	}
 
+	/**
+	 * @return the jaar
+	 */
 	public int getJaar() {
 		return jaar;
 	}
 
+	/**
+	 * @param dag the dag to set
+	 */
 	public void setDag(int dag) {
 		this.dag = dag;
+		if (!bestaatDatum(dag, maand, jaar)) {
+			dag = 0;
+			maand = 0;
+			jaar = 0;
+		}
 	}
 
+	/**
+	 * @param maand the maand to set
+	 */
 	public void setMaand(int maand) {
 		this.maand = maand;
+		if (!bestaatDatum(dag, maand, jaar)) {
+			dag = 0;
+			maand = 0;
+			jaar = 0;
+		}
 	}
 
+	/**
+	 * @param jaar the jaar to set
+	 */
 	public void setJaar(int jaar) {
 		this.jaar = jaar;
+		if (!bestaatDatum(dag, maand, jaar)) {
+			dag = 0;
+			maand = 0;
+			jaar = 0;
+		}
 	}
 
 	public boolean bestaatDatum(int dag, int maand, int jaar) {
@@ -78,7 +115,12 @@ public class Datum {
 	 * @return Geboortedatum
 	 */
 	public String getDatumAsString() {
-		// TODO
-		return "";
+		if (dag == 0 || maand == 0 || jaar == 0) {
+			return "Onbekend";
+		} else {
+			String output = Integer.toString(dag) + " " + Integer.toString(maand) + " " + Integer.toString(jaar);
+			return output;
+		}
+
 	}
 }
