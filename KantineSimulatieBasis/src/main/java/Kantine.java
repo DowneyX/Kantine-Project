@@ -24,8 +24,9 @@ public class Kantine {
      * Deze methode handelt de rij voor de kassa af.
      */
     public void verwerkRijVoorKassa() {
-        while () {
-            // omitted
+        while (kassarij.erIsEenRij()) {
+            Dienblad eerstePersoonInRij;
+            Kassa rekenAf;
         }
     }
 
