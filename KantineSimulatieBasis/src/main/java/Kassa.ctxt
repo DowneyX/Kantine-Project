@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Kassa
+comment1.params=kassarij
+comment1.target=Kassa(KassaRij)
+comment1.text=\r\n\ Constructor\r\n
+comment2.params=klant
+comment2.target=void\ rekenAf(Dienblad)
+comment2.text=\r\n\ Vraag\ het\ aantal\ artikelen\ en\ de\ totaalprijs\ op.\ Tel\ deze\ gegevens\ op\ bij\ de\r\n\ controletotalen\ die\ voor\ de\ kassa\ worden\ bijgehouden.\ De\ implementatie\ wordt\r\n\ later\ vervangen\ door\ een\ echte\ betaling\ door\ de\ persoon.\r\n\r\n\ @param\ klant\ die\ moet\ afrekenen\r\n
+comment3.params=
+comment3.target=int\ aantalArtikelen()
+comment3.text=\r\n\ Geeft\ het\ aantal\ artikelen\ dat\ de\ kassa\ heeft\ gepasseerd,\ vanaf\ het\ moment\r\n\ dat\ de\ methode\ resetWaarden\ is\ aangeroepen.\r\n\r\n\ @return\ aantal\ artikelen\r\n
+comment4.params=
+comment4.target=double\ hoeveelheidGeldInKassa()
+comment4.text=\r\n\ Geeft\ het\ totaalbedrag\ van\ alle\ artikelen\ die\ de\ kassa\ zijn\ gepasseerd,\ vanaf\r\n\ het\ moment\ dat\ de\ methode\ resetKassa\ is\ aangeroepen.\r\n\r\n\ @return\ hoeveelheid\ geld\ in\ de\ kassa\r\n
+comment5.params=
+comment5.target=void\ resetKassa()
+comment5.text=\r\n\ reset\ de\ waarden\ van\ het\ aantal\ gepasseerde\ artikelen\ en\ de\ totale\r\n\ hoeveelheid\ geld\ in\ de\ kassa.\r\n
+numComments=6

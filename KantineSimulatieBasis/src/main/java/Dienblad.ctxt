@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Dienblad
+comment1.params=klant
+comment1.target=Dienblad(Persoon)
+comment1.text=\r\n\ Constructor\r\n
+comment2.params=
+comment2.target=Persoon\ getKlant()
+comment2.text=\r\n\ @return\ the\ klant\r\n
+comment3.params=klant
+comment3.target=void\ setKlant(Persoon)
+comment3.text=\r\n\ @param\ klant\ the\ klant\ to\ set\r\n
+comment4.params=artikel
+comment4.target=void\ voegToe(Artikel)
+comment4.text=\r\n\ Methode\ om\ artikel\ aan\ dienblad\ toe\ te\ voegen\r\n\r\n\ @param\ artikel\r\n
+comment5.params=
+comment5.target=int\ getAantalArtikelen()
+comment5.text=\r\n\ Methode\ om\ aantal\ artikelen\ op\ dienblad\ te\ tellen\r\n\r\n\ @return\ Het\ aantal\ artikelen\r\n
+comment6.params=
+comment6.target=double\ getTotaalPrijs()
+comment6.text=\r\n\ Methode\ om\ de\ totaalprijs\ van\ de\ artikelen\ op\ dienblad\ uit\ te\ rekenen\r\n\r\n\ @return\ De\ totaalprijs\r\n
+numComments=7
