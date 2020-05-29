@@ -25,6 +25,7 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
+        // System.out.println("person checking out");
         hoeveelheidGeld += klant.getTotaalPrijs();
         hoeveelheidArtikelen += klant.getAantalArtikelen();
     }
@@ -35,7 +36,7 @@ public class Kassa {
      *
      * @return aantal artikelen
      */
-    public int aantalArtikelen() {
+    public int GetHoeveelheidArtikelen() {
         return hoeveelheidArtikelen;
     }
 
@@ -45,7 +46,7 @@ public class Kassa {
      *
      * @return hoeveelheid geld in de kassa
      */
-    public double hoeveelheidGeldInKassa() {
+    public double GetHoeveelheidGeldInKassa() {
         return hoeveelheidGeld;
     }
 

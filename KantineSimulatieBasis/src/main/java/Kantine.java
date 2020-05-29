@@ -12,13 +12,17 @@ public class Kantine {
     }
 
     /**
-     * In deze methode wordt een Persoon en Dienblad gemaakt en aan elkaar gekoppeld. Maak twee
-     * Artikelen aan en plaats deze op het dienblad. Tenslotte sluit de Persoon zich aan bij de rij
-     * voor de kassa.
+     * In deze methode wordt een Persoon en Dienblad gemaakt en aan elkaar
+     * gekoppeld. Maak twee Artikelen aan en plaats deze op het dienblad. Tenslotte
+     * sluit de Persoon zich aan bij de rij voor de kassa.
      */
     public void loopPakSluitAan() {
-        Datum geboorteDatum = new Datum(13,12,1999);
+        // System.out.println("intitialising person");
+
+        Datum geboorteDatum = new Datum(13, 12, 1999);
         Persoon persoon = new Persoon(0, "a", "b", geboorteDatum, 'm');
+
+        // System.out.println("intitialising tray");
         Dienblad dienblad = new Dienblad(persoon);
         Artikel artikel = new Artikel("pannenkoek", 2.00);
         Artikel artikel2 = new Artikel("pindakaas", 1.50);
@@ -33,8 +37,8 @@ public class Kantine {
      */
     public void verwerkRijVoorKassa() {
         while (kassarij.erIsEenRij()) {
-          Dienblad eersteKlant = kassarij.eerstePersoonInRij();
-          kassa.rekenAf(eersteKlant);
+            Dienblad eersteKlant = kassarij.eerstePersoonInRij();
+            kassa.rekenAf(eersteKlant);
         }
     }
 
@@ -43,8 +47,8 @@ public class Kantine {
      *
      * @return hoeveelheid geld in kassa
      */
-    public double hoeveelheidGeldInKassa() {
-        return kassa.hoeveelheidGeldInKassa();
+    public double GetHoeveelheidGeldInKassa() {
+        return kassa.GetHoeveelheidGeldInKassa();
     }
 
     /**
@@ -52,13 +56,13 @@ public class Kantine {
      *
      * @return het aantal gepasseerde artikelen
      */
-    public int aantalArtikelen() {
-        return kassa.aantalArtikelen();
+    public int GetHoeveelheidArtikelen() {
+        return kassa.GetHoeveelheidArtikelen();
     }
 
     /**
-     * Deze methode reset de bijgehouden telling van het aantal artikelen en "leegt" de inhoud van
-     * de kassa.
+     * Deze methode reset de bijgehouden telling van het aantal artikelen en "leegt"
+     * de inhoud van de kassa.
      */
     public void resetKassa() {
         kassa.resetKassa();

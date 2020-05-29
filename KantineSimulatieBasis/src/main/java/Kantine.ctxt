@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Kantine
+comment1.params=
+comment1.target=Kantine()
+comment1.text=\r\n\ Constructor\r\n
+comment2.params=
+comment2.target=void\ loopPakSluitAan()
+comment2.text=\r\n\ In\ deze\ methode\ wordt\ een\ Persoon\ en\ Dienblad\ gemaakt\ en\ aan\ elkaar\r\n\ gekoppeld.\ Maak\ twee\ Artikelen\ aan\ en\ plaats\ deze\ op\ het\ dienblad.\ Tenslotte\r\n\ sluit\ de\ Persoon\ zich\ aan\ bij\ de\ rij\ voor\ de\ kassa.\r\n
+comment3.params=
+comment3.target=void\ verwerkRijVoorKassa()
+comment3.text=\r\n\ Deze\ methode\ handelt\ de\ rij\ voor\ de\ kassa\ af.\r\n
+comment4.params=
+comment4.target=double\ GetHoeveelheidGeldInKassa()
+comment4.text=\r\n\ Deze\ methode\ telt\ het\ geld\ uit\ de\ kassa\r\n\r\n\ @return\ hoeveelheid\ geld\ in\ kassa\r\n
+comment5.params=
+comment5.target=int\ GetHoeveelheidArtikelen()
+comment5.text=\r\n\ Deze\ methode\ geeft\ het\ aantal\ gepasseerde\ artikelen.\r\n\r\n\ @return\ het\ aantal\ gepasseerde\ artikelen\r\n
+comment6.params=
+comment6.target=void\ resetKassa()
+comment6.text=\r\n\ Deze\ methode\ reset\ de\ bijgehouden\ telling\ van\ het\ aantal\ artikelen\ en\ "leegt"\r\n\ de\ inhoud\ van\ de\ kassa.\r\n
+numComments=7

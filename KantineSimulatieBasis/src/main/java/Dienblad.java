@@ -1,16 +1,17 @@
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Dienblad {
 
     // fields
-    private ArrayList<Artikel> artikelen;
+    private Stack<Artikel> artikelen;
     private Persoon klant;
 
     /**
      * Constructor
      */
     public Dienblad(Persoon klant) {
-        artikelen = new ArrayList<Artikel>();
+        artikelen = new Stack<Artikel>();
         this.klant = klant;
     }
 
