@@ -1,9 +1,9 @@
 public class Datum {
 
 	// fields
-	private int dag = 0;
-	private int maand = 0;
-	private int jaar = 0;
+	private int dag;
+	private int maand;
+	private int jaar;
 
 	// constructor
 	public Datum(int dag, int maand, int jaar) {

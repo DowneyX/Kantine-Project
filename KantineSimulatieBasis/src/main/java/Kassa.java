@@ -1,17 +1,19 @@
 import java.util.Iterator;
+import java.util.Stack;
+import java.lang.Math;
 
 public class Kassa {
 
     // fields
-    private KassaRij kassaRij;
     private int hoeveelheidArtikelen;
     private double hoeveelheidGeld;
 
     /**
      * Constructor
+     * 
+     * @param kassarij
      */
-    public Kassa(KassaRij kassarij) {
-        this.kassaRij = kassarij;
+    public Kassa() {
         hoeveelheidArtikelen = 0;
         hoeveelheidGeld = 0;
 
@@ -26,8 +28,8 @@ public class Kassa {
      */
     public void rekenAf(Dienblad klant) {
         // System.out.println("person checking out");
-        hoeveelheidGeld += klant.getTotaalPrijs();
-        hoeveelheidArtikelen += klant.getAantalArtikelen();
+        hoeveelheidGeld = Math.round(hoeveelheidGeld + getTotaalPrijs(klant));
+        hoeveelheidArtikelen += getAantalArtikelen(klant);
     }
 
     /**
@@ -36,7 +38,7 @@ public class Kassa {
      *
      * @return aantal artikelen
      */
-    public int GetHoeveelheidArtikelen() {
+    public int getHoeveelheidArtikelen() {
         return hoeveelheidArtikelen;
     }
 
@@ -46,7 +48,7 @@ public class Kassa {
      *
      * @return hoeveelheid geld in de kassa
      */
-    public double GetHoeveelheidGeldInKassa() {
+    public double getHoeveelheidGeldInKassa() {
         return hoeveelheidGeld;
     }
 
@@ -58,4 +60,29 @@ public class Kassa {
         hoeveelheidArtikelen = 0;
         hoeveelheidGeld = 0;
     }
+
+    /**
+     * Methode om aantal artikelen op dienblad te tellen
+     *
+     * @return Het aantal artikelen
+     */
+    public int getAantalArtikelen(Dienblad klant) {
+        Stack<Artikel> artikelen = klant.getArtikelen();
+        return artikelen.size();
+    }
+
+    /**
+     * Methode om de totaalprijs van de artikelen op dienblad uit te rekenen
+     *
+     * @return De totaalprijs
+     */
+    public double getTotaalPrijs(Dienblad klant) {
+        double value = 0;
+        Stack<Artikel> artikelen = klant.getArtikelen();
+        for (Artikel art : artikelen) {
+            value += art.getPrijs();
+        }
+        return value;
+    }
+
 }

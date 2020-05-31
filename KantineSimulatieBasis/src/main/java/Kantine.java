@@ -2,13 +2,14 @@ public class Kantine {
 
     private Kassa kassa;
     private KassaRij kassarij;
+    private KantineAanbod kantineAanbod;
 
     /**
      * Constructor
      */
     public Kantine() {
         kassarij = new KassaRij();
-        kassa = new Kassa(kassarij);
+        kassa = new Kassa();
     }
 
     /**
@@ -16,18 +17,18 @@ public class Kantine {
      * gekoppeld. Maak twee Artikelen aan en plaats deze op het dienblad. Tenslotte
      * sluit de Persoon zich aan bij de rij voor de kassa.
      */
-    public void loopPakSluitAan() {
-        // System.out.println("intitialising person");
+    public void loopPakSluitAan(Dienblad dienblad, String[] artikelnamen) {
 
-        Datum geboorteDatum = new Datum(13, 12, 1999);
-        Persoon persoon = new Persoon(0, "a", "b", geboorteDatum, 'm');
+        // prints who is taking items and going to the check out
+        System.out.println("---------------------------------------------------");
+        System.out.println(dienblad.getKlant().getVoornaam() + " " + dienblad.getKlant().getAchternaam());
 
-        // System.out.println("intitialising tray");
-        Dienblad dienblad = new Dienblad(persoon);
-        Artikel artikel = new Artikel("pannenkoek", 2.00);
-        Artikel artikel2 = new Artikel("pindakaas", 1.50);
-        dienblad.voegToe(artikel);
-        dienblad.voegToe(artikel2);
+        for (String naam : artikelnamen) {
+            dienblad.voegToe(kantineAanbod.getArtikel(naam));
+
+            // prints the artikle and price of the artikle that is put on the tray
+            System.out.println(naam + ": " + kantineAanbod.getArtikel(naam).getPrijs());
+        }
         kassarij.sluitAchteraan(dienblad);
 
     }
@@ -42,22 +43,8 @@ public class Kantine {
         }
     }
 
-    /**
-     * Deze methode telt het geld uit de kassa
-     *
-     * @return hoeveelheid geld in kassa
-     */
-    public double GetHoeveelheidGeldInKassa() {
-        return kassa.GetHoeveelheidGeldInKassa();
-    }
-
-    /**
-     * Deze methode geeft het aantal gepasseerde artikelen.
-     *
-     * @return het aantal gepasseerde artikelen
-     */
-    public int GetHoeveelheidArtikelen() {
-        return kassa.GetHoeveelheidArtikelen();
+    public Kassa getKassa() {
+        return kassa;
     }
 
     /**
@@ -67,5 +54,19 @@ public class Kantine {
     public void resetKassa() {
         kassa.resetKassa();
 
+    }
+
+    /**
+     * @return the kantineAanbod
+     */
+    public KantineAanbod getKantineAanbod() {
+        return kantineAanbod;
+    }
+
+    /**
+     * @param kantineAanbod the kantineAanbod to set
+     */
+    public void setKantineAanbod(KantineAanbod kantineAanbod) {
+        this.kantineAanbod = kantineAanbod;
     }
 }
