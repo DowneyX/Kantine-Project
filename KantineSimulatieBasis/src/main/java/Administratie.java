@@ -1,5 +1,8 @@
 public class Administratie {
 
+    private int[] ArtikelenPerDag;
+    private double[] omzetPerDag;
+
     /**
      * Deze methode berekent van de int array aantal de gemiddelde waarde
      *
@@ -7,7 +10,13 @@ public class Administratie {
      * @return het gemiddelde
      */
     public double berekenGemiddeldAantal(int[] aantal) {
-        // method body omitted
+        double gemiddelde;
+        int optelling = 0;
+        for (int art : aantal) {
+            optelling += art;
+        }
+        gemiddelde = optelling % aantal.length;
+        return gemiddelde;
     }
 
     /**
@@ -17,7 +26,13 @@ public class Administratie {
      * @return het gemiddelde
      */
     public double berekenGemiddeldeOmzet(double[] omzet) {
-        // method body omitted
+        double gemiddelde;
+        double optelling = 0;
+        for (double geld : omzet) {
+            optelling += geld;
+        }
+        gemiddelde = optelling % omzet.length;
+        return gemiddelde;
     }
 
     /**
@@ -30,13 +45,13 @@ public class Administratie {
     public static double[] berekenDagOmzet(double[] omzet) {
         double[] temp = new double[7];
         for(int i = 0; i < 7; i++) {
+            
 
             int j = 0;
-            while ( ... ) {
+            while (  ) {
                 temp[i] += omzet[i + 7 * j];
 
                 // omitted
-
             }
         }
         return temp;

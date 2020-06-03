@@ -74,6 +74,7 @@ public class KantineAanbod {
      * @return artikel (of null)
      */
     public Artikel getArtikel(String productnaam) {
+
         return getArtikel(getArrayList(productnaam));
     }
 
