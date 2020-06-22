@@ -2,7 +2,7 @@ public class Main {
 
     private static KantineSimulatie_1 sim1 = new KantineSimulatie_1();
     private static KantineSimulatie_2 sim2 = new KantineSimulatie_2();
-    public static final int DAGEN = 7;
+    public static final int DAGEN = 31;
 
     /**
      * Start een simulatie

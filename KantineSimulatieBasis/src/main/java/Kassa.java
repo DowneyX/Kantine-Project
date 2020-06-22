@@ -27,9 +27,34 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        // System.out.println("person checking out");
-        hoeveelheidGeld = Math.round(hoeveelheidGeld + getTotaalPrijs(klant));
+        Betaalwijze betaalwijze = klant.getKlant().getBetaalwijze();
+        double teBetalen;
+        double korting = 0;
+
+        // ask teacher for a better way of doing this. because this is just fucking
+        // rediculous
+        if (klant.getKlant() instanceof KortingskaartHouder) {
+            KortingskaartHouder kortingkaartHouder = (KortingskaartHouder) klant.getKlant();
+            korting = getTotaalPrijs(klant) * kortingkaartHouder.geefKortingsPercentage();
+            if (kortingkaartHouder.heeftMaximum()) {
+                if (korting > kortingkaartHouder.geefMaximum()) {
+                    korting = kortingkaartHouder.geefMaximum();
+                }
+            }
+        }
+        teBetalen = getTotaalPrijs(klant) - korting;
+
+        try {
+            betaalwijze.betaal(teBetalen);
+        } catch (TeWeinigGeldException e) {
+            e.getMessage();
+            e.printStackTrace();
+            System.out.println("        " + klant.getKlant().getVoornaam() + " " + klant.getKlant().getAchternaam()
+                    + "did not have enough money");
+        }
+        hoeveelheidGeld = Math.round(hoeveelheidGeld + teBetalen);
         hoeveelheidArtikelen += getAantalArtikelen(klant);
+
     }
 
     /**

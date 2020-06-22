@@ -11,14 +11,6 @@ public class KantineSimulatie_2 {
     // random generator
     private Random random;
 
-    // voornamen
-    private String[] voornamen = { "Charlie", "Remy", "Skyler", "Jamie", "Casey", "Rory", "Parker", "Alex", "Riley",
-            "Robin", "anne", "noah", "bo" };
-
-    // achternamen
-    private String[] achternamen = { "klip", "kant", "van dijk", "leeuwol", "brouwer", "bakker", "smith", "boomstra",
-            "hekman", };
-
     // aantal artikelen
     private static final int AANTAL_ARTIKELEN = 4;
 
@@ -40,6 +32,23 @@ public class KantineSimulatie_2 {
     // minimum en maximum artikelen per persoon
     private static final int MIN_ARTIKELEN_PER_PERSOON = 1;
     private static final int MAX_ARTIKELEN_PER_PERSOON = 4;
+
+    // voornamen
+    private String[] voornamen = { "Charlie", "Remy", "Skyler", "Jamie", "Casey", "Rory", "Parker", "Alex", "Riley",
+            "Robin", "anne", "noah", "bo" };
+
+    // achternamen
+    private String[] achternamen = { "klip", "kant", "van dijk", "leeuwol", "brouwer", "bakker", "smith", "boomstra",
+            "hekman", };
+
+    // per dag totaal Omzet
+    double[] perDagOmzet = new double[Main.DAGEN];
+
+    // per dag aantal artikelen
+    int[] perDagArtikelen = new int[Main.DAGEN];
+
+    // per dag aantal personen
+    int[] perDagPersonen = new int[Main.DAGEN];
 
     /**
      * Constructor
@@ -144,6 +153,10 @@ public class KantineSimulatie_2 {
                 // artikelen, sluit aan
                 kantine.loopPakSluitAan(dienblad, artikelen);
 
+                // prints who is taking items + their role
+                System.out.println("---------------------------------------------------");
+                System.out.println(persoon.getVoornaam() + " " + persoon.getAchternaam());
+                System.out.println(persoon.toString());
             }
 
             // verwerk rij voor de kassa
@@ -151,15 +164,60 @@ public class KantineSimulatie_2 {
 
             // druk de dagtotalen af en hoeveel personen binnen
             // zijn gekomen
-            System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            System.out.println("dag:            " + (i + 1));
-            System.out.println("geld:           " + kantine.getKassa().getHoeveelheidGeldInKassa());
-            System.out.println("artikelen:      " + kantine.getKassa().getHoeveelheidArtikelen());
-            System.out.println("aantal peronen: " + aantalpersonen);
-            System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+            perDagOmzet[i] = kantine.getKassa().getHoeveelheidGeldInKassa();
+            perDagArtikelen[i] = kantine.getKassa().getHoeveelheidArtikelen();
+            perDagPersonen[i] = aantalpersonen;
+
+            // prints information about the current day
+            printDagInfo(i);
+
             // reset de kassa voor de volgende dag
             kantine.resetKassa();
         }
+
+        // prints all the average numbers of the information gathered during the
+        // simulation
+        printTotalInfo();
+    }
+
+    /**
+     * prints all the average numbers of the information gathered during the
+     * simulation
+     */
+    public void printTotalInfo() {
+
+        double[] gemideldeweekdagOmzet = Administratie.berekenDagOmzet(perDagOmzet);
+        double gemideldePersonen = Administratie.berekenGemiddeldAantal(perDagPersonen);
+        double gemideldeArtikelen = Administratie.berekenGemiddeldAantal(perDagArtikelen);
+        double gemideldeOmzet = Administratie.berekenGemiddeldeOmzet(perDagOmzet);
+
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("gemidelde aantal personen           : " + gemideldePersonen);
+        System.out.println("gemidelde aantal artikelen verkocht : " + gemideldeArtikelen);
+        System.out.println("gemidelde aantal omzet              : " + gemideldeOmzet);
+        System.out.println("gemidelde aantal omzet maandag      : " + gemideldeweekdagOmzet[0]);
+        System.out.println("gemidelde aantal omzet dinsdag      : " + gemideldeweekdagOmzet[1]);
+        System.out.println("gemidelde aantal omzet woensdag     : " + gemideldeweekdagOmzet[2]);
+        System.out.println("gemidelde aantal omzet donderdag    : " + gemideldeweekdagOmzet[3]);
+        System.out.println("gemidelde aantal omzet vrijdag      : " + gemideldeweekdagOmzet[4]);
+        System.out.println("gemidelde aantal omzet zaterdag     : " + gemideldeweekdagOmzet[5]);
+        System.out.println("gemidelde aantal omzet zondag       : " + gemideldeweekdagOmzet[6]);
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    }
+
+    /**
+     * prints information about a specific day
+     * 
+     * @param dag the day you need information about
+     */
+    public void printDagInfo(int dag) {
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("dag:            " + dag + 1);
+        System.out.println("geld:           " + perDagOmzet[dag]);
+        System.out.println("artikelen:      " + perDagArtikelen[dag]);
+        System.out.println("aantal peronen: " + perDagPersonen[dag]);
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     }
 
     /**
@@ -168,11 +226,14 @@ public class KantineSimulatie_2 {
      * @return een random persooon
      */
     public Persoon getRandomPerson() {
+        Persoon persoon;
+
+        int ocupationChance = getRandomValue(0, 100);
         char geslacht;
-        int bsn = 0;
+        int bsn = getRandomValue(100000000, 999999999);
         String voornaam = voornamen[getRandomValue(0, (voornamen.length - 1))];
         String achternaam = achternamen[getRandomValue(0, (achternamen.length - 1))];
-        Datum geboortedatum = new Datum(12, 12, 2001);
+        Datum geboorteDatum = new Datum(12, 12, 2001);
 
         if (getRandomBoolean()) {
             geslacht = 'M';
@@ -180,6 +241,25 @@ public class KantineSimulatie_2 {
             geslacht = 'V';
         }
 
-        return new Persoon(bsn, voornaam, achternaam, geboortedatum, geslacht);
+        if (ocupationChance == 100) {
+            int employeeNumber = getRandomValue(100, 999);
+            boolean isCashier = getRandomBoolean();
+            persoon = new kantinemedewerker(bsn, voornaam, achternaam, geboorteDatum, geslacht, employeeNumber,
+                    isCashier);
+        } else if (ocupationChance >= 90) {
+            String acronym = "XXXX";
+            String sector = "ICT";
+            persoon = new Docent(bsn, voornaam, achternaam, geboorteDatum, geslacht, acronym, sector);
+        } else if (ocupationChance <= 89) {
+            int studentNumber = getRandomValue(100000, 999999);
+            String study = "HBO-ICT:SE";
+            persoon = new Student(bsn, voornaam, achternaam, geboorteDatum, geslacht, studentNumber, study);
+        } else {
+            persoon = new Persoon(bsn, voornaam, achternaam, geboorteDatum, geslacht);
+        }
+        Betaalwijze betaalwijze = new Contant();
+        betaalwijze.setSaldo(6);
+        persoon.setBetaalwijze(betaalwijze);
+        return persoon;
     }
 }
