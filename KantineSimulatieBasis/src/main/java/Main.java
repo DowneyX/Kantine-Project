@@ -1,3 +1,6 @@
+
+
+
 public class Main {
 
     private static KantineSimulatie_1 sim1 = new KantineSimulatie_1();
@@ -20,5 +23,6 @@ public class Main {
 
         sim2.simuleer(DAGEN);
     }
+
 
 }
