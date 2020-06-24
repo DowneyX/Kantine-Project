@@ -1,9 +1,15 @@
 public abstract class Betaalwijze {
-
+    /**
+     * fields
+     */
     protected double saldo;
 
     /**
-     * Methode om krediet te initialiseren
+     * METHODS
+     */
+
+    /**
+     * Method to initiialise credit
      *
      * @param saldo
      */
@@ -12,10 +18,9 @@ public abstract class Betaalwijze {
     }
 
     /**
-     * Methode om betaling af te handelen
+     * Method to handle a payment
      *
      * @param tebetalen
-     * @return void om te kijken of er voldoende saldo is
      * @throws TeWeinigGeldException
      */
     public abstract void betaal(double tebetalen) throws TeWeinigGeldException;

@@ -1,6 +1,10 @@
 public class Contant extends Betaalwijze {
     /**
-     * Methode om betaling af te handelen
+     * METHODS
+     */
+
+    /**
+     * Method to handle payments
      * 
      * @throws TeWeinigGeldException
      */

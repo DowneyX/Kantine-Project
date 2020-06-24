@@ -2,7 +2,9 @@ import java.util.Stack;
 
 public class Dienblad {
 
-    // fields
+    /**
+     * fields
+     */
     private Stack<Artikel> artikelen;
     private Persoon klant;
 
@@ -15,21 +17,25 @@ public class Dienblad {
     }
 
     /**
-     * @return the klant
+     * METHODS
+     */
+
+    /**
+     * @return the customer
      */
     public Persoon getKlant() {
         return klant;
     }
 
     /**
-     * @param klant the klant to set
+     * @param klant the customer to set
      */
     public void setKlant(Persoon klant) {
         this.klant = klant;
     }
 
     /**
-     * Methode om artikel aan dienblad toe te voegen
+     * method to bind an artikel to a dienblad
      *
      * @param artikel
      */
@@ -37,6 +43,11 @@ public class Dienblad {
         artikelen.add(artikel);
     }
 
+    /**
+     * method the return a stack of artikelen
+     * 
+     * @return
+     */
     public Stack<Artikel> getArtikelen() {
         return artikelen;
     }

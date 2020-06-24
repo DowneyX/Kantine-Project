@@ -1,11 +1,14 @@
 public class Kantine {
 
+    /**
+     * FIELDS
+     */
     private Kassa kassa;
     private KassaRij kassarij;
     private KantineAanbod kantineAanbod;
 
     /**
-     * Constructor
+     * CONSTUCTOR
      */
     public Kantine() {
         kassarij = new KassaRij();
@@ -13,19 +16,28 @@ public class Kantine {
     }
 
     /**
-     * In deze methode wordt een Persoon en Dienblad gemaakt en aan elkaar
-     * gekoppeld. Maak twee Artikelen aan en plaats deze op het dienblad. Tenslotte
-     * sluit de Persoon zich aan bij de rij voor de kassa.
+     * METHODS
+     */
+
+    /**
+     * in this method a customer wil put artikelen on his tray and then join the
+     * queue at the cash register
+     * 
+     * @param dienblad
+     * @param artikelnamen
      */
     public void loopPakSluitAan(Dienblad dienblad, String[] artikelnamen) {
         for (String naam : artikelnamen) {
-            dienblad.voegToe(kantineAanbod.getArtikel(naam));
+            Artikel artikel = kantineAanbod.getArtikel(naam);
+            dienblad.voegToe(artikel);
+            System.out.println("naam artikel: " + artikel.getNaam());
+            System.out.println("korting artikel: " + artikel.getKorting());
         }
         kassarij.sluitAchteraan(dienblad);
     }
 
     /**
-     * Deze methode handelt de rij voor de kassa af.
+     * this method handles the queue
      */
     public void verwerkRijVoorKassa() {
         while (kassarij.erIsEenRij()) {
@@ -34,6 +46,11 @@ public class Kantine {
         }
     }
 
+    /**
+     * gets the cash register
+     * 
+     * @return the kassa
+     */
     public Kassa getKassa() {
         return kassa;
     }

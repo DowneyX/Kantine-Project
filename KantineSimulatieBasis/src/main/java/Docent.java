@@ -1,16 +1,21 @@
 public class Docent extends Persoon implements KortingskaartHouder {
 
+    /**
+     * Fields
+     */
     private String acronym;
     private String sector;
 
     /**
-     * constructor
+     * CONSTRUCTOR
      * 
-     * @param bsn
-     * @param voornaam
-     * @param achternaam
-     * @param geboorteDatum
-     * @param geslacht
+     * @param bsn           bsn number
+     * @param voornaam      first name
+     * @param achternaam    last name
+     * @param geboorteDatum date of birth
+     * @param geslacht      sec
+     * @param acronym       the teachers 4 letter code
+     * @param sector        the sector that the teacher works in
      */
     public Docent(int bsn, String voornaam, String achternaam, Datum geboorteDatum, char geslacht, String acronym,
             String sector) {
@@ -20,6 +25,10 @@ public class Docent extends Persoon implements KortingskaartHouder {
         this.acronym = acronym;
 
     }
+
+    /**
+     * METHODS
+     */
 
     /**
      * gets the docent their acronym

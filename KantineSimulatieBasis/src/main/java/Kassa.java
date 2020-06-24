@@ -1,10 +1,12 @@
-import java.util.Iterator;
 import java.util.Stack;
 import java.lang.Math;
+import java.time.LocalDate;
 
 public class Kassa {
 
-    // fields
+    /**
+     * FIELDS
+     */
     private int hoeveelheidArtikelen;
     private double hoeveelheidGeld;
 
@@ -16,8 +18,11 @@ public class Kassa {
     public Kassa() {
         hoeveelheidArtikelen = 0;
         hoeveelheidGeld = 0;
-
     }
+
+    /**
+     * METHODS
+     */
 
     /**
      * Vraag het aantal artikelen en de totaalprijs op. Tel deze gegevens op bij de
@@ -27,30 +32,18 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
+        Factuur factuur = new Factuur(klant, LocalDate.now());
         Betaalwijze betaalwijze = klant.getKlant().getBetaalwijze();
-        double teBetalen;
-        double korting = 0;
-
-        // ask teacher for a better way of doing this. because this is just fucking
-        // rediculous
-        if (klant.getKlant() instanceof KortingskaartHouder) {
-            KortingskaartHouder kortingkaartHouder = (KortingskaartHouder) klant.getKlant();
-            korting = getTotaalPrijs(klant) * kortingkaartHouder.geefKortingsPercentage();
-            if (kortingkaartHouder.heeftMaximum()) {
-                if (korting > kortingkaartHouder.geefMaximum()) {
-                    korting = kortingkaartHouder.geefMaximum();
-                }
-            }
-        }
-        teBetalen = getTotaalPrijs(klant) - korting;
+        double teBetalen = factuur.getTotaal();
 
         try {
             betaalwijze.betaal(teBetalen);
         } catch (TeWeinigGeldException e) {
+            System.out.println(klant.getKlant().getVoornaam() + " " + klant.getKlant().getAchternaam()
+                    + " did not have enough money");
             e.getMessage();
             e.printStackTrace();
-            System.out.println("        " + klant.getKlant().getVoornaam() + " " + klant.getKlant().getAchternaam()
-                    + "did not have enough money");
+
         }
         hoeveelheidGeld = Math.round(hoeveelheidGeld + teBetalen);
         hoeveelheidArtikelen += getAantalArtikelen(klant);
@@ -101,13 +94,24 @@ public class Kassa {
      *
      * @return De totaalprijs
      */
-    public double getTotaalPrijs(Dienblad klant) {
-        double value = 0;
-        Stack<Artikel> artikelen = klant.getArtikelen();
-        for (Artikel art : artikelen) {
-            value += art.getPrijs();
-        }
-        return value;
-    }
+
+    /**
+     * 
+     * public double getTotaalPrijs(Dienblad klant) { double value = 0;
+     * Stack<Artikel> artikelen = klant.getArtikelen(); for (Artikel art :
+     * artikelen) {
+     * 
+     * double Dagkorting = art.getKorting(); double kaartKorting = 0;
+     * 
+     * if (Dagkorting == 0) { if (klant.getKlant() instanceof KortingskaartHouder) {
+     * KortingskaartHouder kortingkaartHouder = (KortingskaartHouder)
+     * klant.getKlant(); double KortingsPercentage =
+     * kortingkaartHouder.geefKortingsPercentage(); kaartKorting = art.getPrijs() *
+     * KortingsPercentage; if (kortingkaartHouder.heeftMaximum()) { if (kaartKorting
+     * > kortingkaartHouder.geefMaximum()) { kaartKorting =
+     * kortingkaartHouder.geefMaximum(); } } } value += art.getPrijs() -
+     * kaartKorting; } else { value += art.getPrijs() - Dagkorting; } } return
+     * value; }
+     */
 
 }

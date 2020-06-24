@@ -1,11 +1,19 @@
 public class Datum {
 
-	// fields
+	/**
+	 * FIELDS
+	 */
 	private int dag;
 	private int maand;
 	private int jaar;
 
-	// constructor
+	/**
+	 * CONSTUCTOR
+	 * 
+	 * @param dag   the day
+	 * @param maand the month
+	 * @param jaar  the year
+	 */
 	public Datum(int dag, int maand, int jaar) {
 		if (bestaatDatum(dag, maand, jaar)) {
 			this.dag = dag;
@@ -18,30 +26,33 @@ public class Datum {
 		}
 	}
 
-	// methods
 	/**
-	 * @return the dag
+	 * METHODS
+	 */
+
+	/**
+	 * @return the day
 	 */
 	public int getDag() {
 		return dag;
 	}
 
 	/**
-	 * @return the maand
+	 * @return the month
 	 */
 	public int getMaand() {
 		return maand;
 	}
 
 	/**
-	 * @return the jaar
+	 * @return the year
 	 */
 	public int getJaar() {
 		return jaar;
 	}
 
 	/**
-	 * @param dag the dag to set
+	 * @param dag the day to set
 	 */
 	public void setDag(int dag) {
 		this.dag = dag;
@@ -53,7 +64,7 @@ public class Datum {
 	}
 
 	/**
-	 * @param maand the maand to set
+	 * @param maand the month to set
 	 */
 	public void setMaand(int maand) {
 		this.maand = maand;
@@ -65,7 +76,7 @@ public class Datum {
 	}
 
 	/**
-	 * @param jaar the jaar to set
+	 * @param jaar the year to set
 	 */
 	public void setJaar(int jaar) {
 		this.jaar = jaar;
@@ -76,6 +87,14 @@ public class Datum {
 		}
 	}
 
+	/**
+	 * method that checks if a certain date is even possible
+	 * 
+	 * @param dag   the day
+	 * @param maand the month
+	 * @param jaar  the year
+	 * @return boalean depending on if the date is possible or not
+	 */
 	public boolean bestaatDatum(int dag, int maand, int jaar) {
 
 		if (dag < 1 || dag > 31) {
@@ -109,8 +128,7 @@ public class Datum {
 	}
 
 	/**
-	 * Getter voor Sting weergave van datum
-	 *
+	 * method to get the date as a string
 	 * 
 	 * @return Geboortedatum
 	 */

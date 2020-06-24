@@ -1,6 +1,19 @@
 public class Administratie {
 
+    /**
+     * FIELDS
+     */
     private static final int DAYS_IN_WEEK = 7;
+
+    /**
+     * CONSTRUCTOR
+     */
+    private Administratie() {
+    }
+
+    /**
+     * METHODS
+     */
 
     /**
      * Deze methode berekent van de int array aantal de gemiddelde waarde
@@ -8,9 +21,6 @@ public class Administratie {
      * @param aantal
      * @return het gemiddelde
      */
-    private Administratie() {
-    }
-
     public static double berekenGemiddeldAantal(int[] aantal) {
         double optelling = 0;
         for (int aant : aantal) {

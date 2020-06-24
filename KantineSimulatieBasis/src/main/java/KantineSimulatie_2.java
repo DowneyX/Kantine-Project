@@ -2,11 +2,13 @@ import java.util.*;
 import javax.persistence.Persistence;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+
 public class KantineSimulatie_2 {
-    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("KantineSimulatie");
+    // database connection
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
+            .createEntityManagerFactory("KantineSimulatie");
+    // entitymaneger
     private EntityManager manager;
-
-
 
     // kantine
     private Kantine kantine;
@@ -27,9 +29,12 @@ public class KantineSimulatie_2 {
     // prijzen
     private static double[] artikelprijzen = new double[] { 1.50, 2.10, 1.65, 1.65 };
 
+    // kortingen
+    private static double[] artikelkortingen = new double[] { 0, 0, 0, 0 };
+
     // minimum en maximum aantal artikelen per soort
-    private static final int MIN_ARTIKELEN_PER_SOORT = 12;
-    private static final int MAX_ARTIKELEN_PER_SOORT = 21;
+    private static final int MIN_ARTIKELEN_PER_SOORT = 10;
+    private static final int MAX_ARTIKELEN_PER_SOORT = 30;
 
     // minimum en maximum aantal personen per dag
     private static final int MIN_PERSONEN_PER_DAG = 50;
@@ -64,7 +69,7 @@ public class KantineSimulatie_2 {
         kantine = new Kantine();
         random = new Random();
         int[] hoeveelheden = getRandomArray(AANTAL_ARTIKELEN, MIN_ARTIKELEN_PER_SOORT, MAX_ARTIKELEN_PER_SOORT);
-        kantineaanbod = new KantineAanbod(artikelnamen, artikelprijzen, hoeveelheden);
+        kantineaanbod = new KantineAanbod(artikelnamen, artikelprijzen, hoeveelheden, artikelkortingen);
 
         kantine.setKantineAanbod(kantineaanbod);
     }
@@ -134,6 +139,10 @@ public class KantineSimulatie_2 {
         // for lus voor dagen
         for (int i = 0; i < dagen; i++) {
 
+            // will set the korting value for a random artikel
+            String randomArtikelNaam = artikelnamen[getRandomValue(0, 3)];
+            kantineaanbod.addKorting(randomArtikelNaam, 0.20);
+
             // bedenk hoeveel personen vandaag binnen lopen
             int aantalpersonen = getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG);
 
@@ -180,6 +189,7 @@ public class KantineSimulatie_2 {
             printDagInfo(i);
 
             // reset de kassa voor de volgende dag
+            kantineaanbod.resetKorting(randomArtikelNaam);
             kantine.resetKassa();
         }
 
